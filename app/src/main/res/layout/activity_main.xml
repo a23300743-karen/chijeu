@@ -12,7 +12,7 @@
         layout="@layout/toolbar"/>
 
     <EditText
-        android:id="@+id/etNombre"
+        android:id="@+id/etModelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
         android:hint="Marca"/>
 
     <EditText
-        android:id="@+id/etEmpresa"
+        android:id="@+id/etFabricante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -90,29 +90,14 @@
         android:hint="Teléfono"/>
 
     <Spinner
-        android:id="@+id/spTipoLeche"
+        android:id="@+id/spTipoCuerpo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textSize="12sp"/>
 
-    <Spinner android:id="@+id/spProceso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:textSize="12sp"/>
-
-    <Spinner
-        android:id="@+id/spPresentacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:textSize="12sp"/>
-
-    <Spinner android:id="@+id/spSabores"
+    <Spinner android:id="@+id/spTipoPastillas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -120,7 +105,22 @@
         android:textSize="12sp"/>
 
     <Spinner
-        android:id="@+id/spPeso"
+        android:id="@+id/spPuente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"/>
+
+    <Spinner android:id="@+id/spMadera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"/>
+
+    <Spinner
+        android:id="@+id/spCuerdas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

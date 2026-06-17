@@ -1,11 +1,10 @@
-package com.example.chijeu
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chijeu.R
 
 class EliminarAdapter (private val lista:MutableList<datos>):
     RecyclerView.Adapter<EliminarAdapter.ViewHolderClass>() {
@@ -18,10 +17,10 @@ class EliminarAdapter (private val lista:MutableList<datos>):
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val item = lista[position]
-        holder.nombre.text = "Modelo: ${item.nombre}"
+        holder.modelo.text = "Modelo: ${item.modelo}"
         holder.marca.text = "Marca: ${item.marca}"
-        holder.presentacion.text = "Puente: ${item.presentacion}"
-        holder.empresa.text = "Fabricante: ${item.empresa}"
+        holder.puente.text = "Puente: ${item.puente}"
+        holder.fabricante.text = "Fabricante: ${item.fabricante}"
 
         holder.checkBox.setOnCheckedChangeListener(null)
         holder.checkBox.isChecked = seleccionados[position]
@@ -34,10 +33,10 @@ class EliminarAdapter (private val lista:MutableList<datos>):
     override fun getItemCount(): Int = lista.size
 
     class ViewHolderClass(view: View) : RecyclerView.ViewHolder(view) {
-        val nombre       = view.findViewById<TextView>(R.id.tvNombreE)
-        val marca        = view.findViewById<TextView>(R.id.tvMarcaE)
-        val presentacion = view.findViewById<TextView>(R.id.tvPresentacionE)
-        val empresa      = view.findViewById<TextView>(R.id.tvEmpresaE)
-        val checkBox     = view.findViewById<CheckBox>(R.id.checkboxEliminar)
+        val modelo     = view.findViewById<TextView>(R.id.tvModeloE)
+        val marca      = view.findViewById<TextView>(R.id.tvMarcaE)
+        val puente     = view.findViewById<TextView>(R.id.tvPuenteE)
+        val fabricante = view.findViewById<TextView>(R.id.tvFabricanteE)
+        val checkBox   = view.findViewById<CheckBox>(R.id.checkboxEliminar)
     }
 }

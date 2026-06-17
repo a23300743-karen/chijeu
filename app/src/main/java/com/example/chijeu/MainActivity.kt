@@ -15,8 +15,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import datos
-import Guitarra.listaGuitarras // Cambiado de listaQuesos a listaGuitarras
-import Guitarra
+import guitarra.listaGuitarras // Cambiado de listaQuesos a listaGuitarras
+import guitarra
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,15 +25,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var Marca: EditText
     lateinit var Fabricante: EditText
     lateinit var Precio: EditText
-    lateinit var PaisOrigen: EditText
-    lateinit var TelefonoTienda: EditText
+    lateinit var Pais: EditText
+    lateinit var Telefono: EditText
 
-    // 5 Spinners (Misma cantidad que antes)
     lateinit var TipoCuerpo: Spinner
     lateinit var TipoPastillas: Spinner
     lateinit var Puente: Spinner
     lateinit var Maderas: Spinner
-    lateinit var NumeroCuerdas: Spinner
+    lateinit var Cuerdas: Spinner
 
     lateinit var Guardar: Button
 
@@ -46,53 +45,50 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         // Inicialización de los 6 EditTexts usando los IDs existentes en tu XML
-        Modelo = findViewById<EditText>(R.id.etNombre)
+        Modelo = findViewById<EditText>(R.id.etModelo)
         Marca = findViewById<EditText>(R.id.etMarca)
-        Fabricante = findViewById<EditText>(R.id.etEmpresa)
+        Fabricante = findViewById<EditText>(R.id.etFabricante)
         Precio = findViewById<EditText>(R.id.etPrecio)
-        PaisOrigen = findViewById<EditText>(R.id.etPais)
-        TelefonoTienda = findViewById<EditText>(R.id.etTelefono)
-
-        // Inicialización de los 5 Spinners usando los IDs existentes en tu XML
-        TipoCuerpo = findViewById<Spinner>(R.id.spTipoLeche)
-        TipoPastillas = findViewById<Spinner>(R.id.spProceso)
-        Puente = findViewById<Spinner>(R.id.spPresentacion)
-        Maderas = findViewById<Spinner>(R.id.spSabores)
-        NumeroCuerdas = findViewById<Spinner>(R.id.spPeso)
+        Pais = findViewById<EditText>(R.id.etPais)
+        Telefono = findViewById<EditText>(R.id.etTelefono)
+        TipoCuerpo = findViewById<Spinner>(R.id.spTipoCuerpo)
+        TipoPastillas = findViewById<Spinner>(R.id.spTipoPastillas)
+        Puente = findViewById<Spinner>(R.id.spPuente)
+        Maderas = findViewById<Spinner>(R.id.spMadera)
+        Cuerdas = findViewById<Spinner>(R.id.spCuerdas)
 
         Guardar = findViewById<Button>(R.id.btnGuardar)
 
-        // Arreglos adaptados (Misma cantidad de opciones aproximada)
-        val opcionesCuerpo = arrayOf("Sólido", "Hueco", "Semi-hueco")
-        val opcionesPastillas = arrayOf("Single Coil", "Humbucker", "P90", "Activas")
-        val opcionesPuente = arrayOf("Fijo", "Trémolo", "Floyd Rose")
-        val opcionesMaderas = arrayOf("Caoba", "Arce", "Palosanto", "Aliso", "Fresno", "Ebano", "Nogal")
-        val opcionesCuerdas = arrayOf("6 cuerdas", "7 cuerdas", "8 cuerdas", "12 cuerdas", "4 cuerdas", "5 cuerdas")
+        val tipocuerpo = arrayOf("Sólido", "Hueco", "Semi-hueco")
+        val tipopastillas = arrayOf("Single Coil", "Humbucker", "P90", "Activas")
+        val puente = arrayOf("Fijo", "Trémolo", "Floyd Rose")
+        val madera = arrayOf("Caoba", "Arce", "Palosanto", "Aliso", "Fresno", "Ebano", "Nogal")
+        val cuerdas = arrayOf("6 cuerdas", "7 cuerdas", "8 cuerdas", "12 cuerdas", "4 cuerdas", "5 cuerdas")
 
         Guardar.setOnClickListener {
             guardar()
         }
 
         // Adaptadores usando los mismos IDs de Spinner y Layouts
-        val cuerpoAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, opcionesCuerpo)
+        val cuerpoAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, tipocuerpo)
         cuerpoAdapter.setDropDownViewResource(R.layout.item_spinner)
         TipoCuerpo.adapter = cuerpoAdapter
 
-        val pastillasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, opcionesPastillas)
+        val pastillasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, tipopastillas)
         pastillasAdapter.setDropDownViewResource(R.layout.item_spinner)
         TipoPastillas.adapter = pastillasAdapter
 
-        val puenteAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, opcionesPuente)
+        val puenteAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, puente)
         puenteAdapter.setDropDownViewResource(R.layout.item_spinner)
         Puente.adapter = puenteAdapter
 
-        val maderasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, opcionesMaderas)
+        val maderasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, madera)
         maderasAdapter.setDropDownViewResource(R.layout.item_spinner)
         Maderas.adapter = maderasAdapter
 
-        val cuerdasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, opcionesCuerdas)
+        val cuerdasAdapter = ArrayAdapter(this, R.layout.item_spinner, R.id.textoSpinner, cuerdas)
         cuerdasAdapter.setDropDownViewResource(R.layout.item_spinner)
-        NumeroCuerdas.adapter = cuerdasAdapter
+        Cuerdas.adapter = cuerdasAdapter
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -102,10 +98,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun guardar() {
-        val telefono = TelefonoTienda.text.toString()
+        val telefono = Telefono.text.toString()
 
         if (Modelo.text.isEmpty() || Marca.text.isEmpty() || Fabricante.text.isEmpty() ||
-            Precio.text.isEmpty() || PaisOrigen.text.isEmpty() || telefono.isEmpty()) {
+            Precio.text.isEmpty() || Pais.text.isEmpty() || telefono.isEmpty()) {
             Toast.makeText(this, "Completa todos los campos de la guitarra", Toast.LENGTH_SHORT).show()
             return
         }
@@ -115,17 +111,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         val info = datos(
-            nombre = Modelo.text.toString(),
+            modelo = Modelo.text.toString(),
             marca = Marca.text.toString(),
-            empresa = Fabricante.text.toString(),
+            fabricante = Fabricante.text.toString(),
             precio = Precio.text.toString().toDouble(),
-            pais = PaisOrigen.text.toString(),
+            pais = Pais.text.toString(),
             telefono = telefono,
-            tipoleche = TipoCuerpo.selectedItem.toString(),
-            proceso = TipoPastillas.selectedItem.toString(),
-            presentacion = Puente.selectedItem.toString(),
-            sabores = Maderas.selectedItem.toString(),
-            peso = NumeroCuerdas.selectedItem.toString(),
+            tipocuerpo = TipoCuerpo.selectedItem.toString(),
+            tipopastillas = TipoPastillas.selectedItem.toString(),
+            puente = Puente.selectedItem.toString(),
+            madera = Maderas.selectedItem.toString(),
+            cuerdas = Cuerdas.selectedItem.toString(),
         )
         listaGuitarras.add(info)
         Toast.makeText(this, "La guitarra se ha guardado correctamente", Toast.LENGTH_SHORT).show()
@@ -148,14 +144,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Ya estas aquí", Toast.LENGTH_SHORT).show()
         }
         if (item.itemId == R.id.opc2) {
-            if (Guitarra.listaGuitarras.isEmpty()) {
+            if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay guitarras registradas", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, ver::class.java))
             }
         }
         if (item.itemId == R.id.opc3) {
-            if (Guitarra.listaGuitarras.isEmpty()) {
+            if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay guitarras para actualizar", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, actualizar::class.java))
@@ -173,7 +169,7 @@ class MainActivity : AppCompatActivity() {
             val rol = prefs.getString("rol", "")
             if (rol == "trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaGuitarras.isEmpty()) {
+            } else if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay ninguna guitarra para eliminar", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, eliminar::class.java))

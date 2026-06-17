@@ -1,6 +1,6 @@
 package com.example.chijeu
 
-import GuitarraAdapter // Cambiado de QuesoAdapter
+import GuitarraAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -27,9 +27,7 @@ class ver : AppCompatActivity() {
 
         recy = findViewById<RecyclerView>(R.id.rv)
         recy.layoutManager = LinearLayoutManager(this)
-
-        // Cambiado a GuitarraAdapter
-        val adapter = GuitarraAdapter(Guitarra.listaGuitarras)
+        val adapter = GuitarraAdapter(guitarra.listaGuitarras)
         recy.adapter = adapter
         adapter.notifyDataSetChanged()
 
@@ -41,11 +39,11 @@ class ver : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu,menu)
         val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
         val rol = prefs.getString("rol", "")
 
-        if (rol == "Vendedor") { // Cambiado de "Trabajador" a "Vendedor" para que coincida con login.kt
+        if (rol== "Trabajador") {
             menu?.findItem(R.id.opc1)?.isVisible = false
             menu?.findItem(R.id.opc3)?.isVisible = false
             menu?.findItem(R.id.iconEliminar)?.isVisible = false
@@ -58,20 +56,20 @@ class ver : AppCompatActivity() {
         val rol = prefs.getString("rol", "")
 
         if (item.itemId == R.id.opc1) {
-            if (rol == "Vendedor") {
-                Toast.makeText(this, "Acceso restringido a administradores", Toast.LENGTH_SHORT).show()
+            if (rol == "Trabajador") {
+                Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
         if (item.itemId == R.id.opc2) {
-            Toast.makeText(this, "Ya estás viendo el catálogo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ya estás aquí", Toast.LENGTH_SHORT).show()
         }
         if (item.itemId == R.id.opc3) {
-            if (rol == "Vendedor") {
-                Toast.makeText(this, "No tienes permisos para actualizar stock", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaGuitarras.isEmpty()) {
-                Toast.makeText(this, "No hay ninguna guitarra para actualizar", Toast.LENGTH_SHORT).show()
+            if (rol == "Trabajador") {
+                Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
+            } else if (guitarra.listaGuitarras.isEmpty()) {
+                Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, actualizar::class.java))
             }
@@ -84,10 +82,12 @@ class ver : AppCompatActivity() {
         }
 
         if (item.itemId == R.id.iconEliminar) {
-            if (rol == "Vendedor") {
-                Toast.makeText(this, "No tienes permisos para eliminar productos", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaGuitarras.isEmpty()) {
-                Toast.makeText(this, "No hay guitarras para eliminar", Toast.LENGTH_SHORT).show()
+            val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+            val rol = prefs.getString("rol", "")
+            if (rol == "Trabajador") {
+                Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
+            } else if (guitarra.listaGuitarras.isEmpty()) {
+                Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, eliminar::class.java))
             }
@@ -96,8 +96,8 @@ class ver : AppCompatActivity() {
         if (item.itemId == R.id.iconCerrarSesion) {
             val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
             prefs.edit().clear().apply()
-            startActivity(Intent(this, login::class.java))
-            finish() // Para que no pueda volver atrás al catálogo tras cerrar sesión
+            val intent = Intent(this, login::class.java)
+            startActivity(intent)
         }
         return true
     }

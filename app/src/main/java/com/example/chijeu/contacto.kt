@@ -51,14 +51,14 @@ class contacto : AppCompatActivity() {
             }
         }
         if (item.itemId == R.id.opc2) {
-            if (Guitarra.listaQuesos.isEmpty()) Toast.makeText(this, "No hay quesos registrados", Toast.LENGTH_SHORT).show()
+            if (guitarra.listaGuitarras.isEmpty()) Toast.makeText(this, "No hay guitarras registradas", Toast.LENGTH_SHORT).show()
             else startActivity(Intent(this, ver::class.java))
         }
         if (item.itemId == R.id.opc3) {
             if (rol == "Trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaQuesos.isEmpty()) {
-                Toast.makeText(this, "No hay ningún queso registrado", Toast.LENGTH_SHORT).show()
+            } else if (guitarra.listaGuitarras.isEmpty()) {
+                Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, actualizar::class.java))
             }
@@ -70,8 +70,8 @@ class contacto : AppCompatActivity() {
             val rol = prefs.getString("rol", "")
             if (rol == "Trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaQuesos.isEmpty()) {
-                Toast.makeText(this, "No hay ningún queso registrado", Toast.LENGTH_SHORT).show()
+            } else if (guitarra.listaGuitarras.isEmpty()) {
+                Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, eliminar::class.java))
             }

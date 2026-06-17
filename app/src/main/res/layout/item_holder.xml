@@ -9,11 +9,11 @@
         android:layout_width="205dp"
         android:layout_height="100dp"
         android:gravity="center"
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtModelo"
         android:background="@color/mint"
         android:textColor="@color/white"
         android:fontFamily="@font/comucan"
-        android:text="Nombre"
+        android:text="Modelo"
         android:textSize="25sp"
         android:clickable="true"/>
 

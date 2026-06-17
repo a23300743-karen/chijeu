@@ -72,11 +72,11 @@ class login : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
 
         } else if (usuario == usuarioTrabajador && password == passTrabajador) {
-            prefs.edit().putString("rol", "Vendedor").apply()
+            prefs.edit().putString("rol", "Trabajador").apply()
 
             // CAMBIO CLAVE: Referencia a la nueva clase Guitarra y su lista
             // Asumiendo que renombrarás la clase 'queso' a 'Guitarra'
-            if (Guitarra.listaGuitarras.isEmpty()) {
+            if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay guitarras en el inventario",
                     Toast.LENGTH_SHORT).show()
             } else {

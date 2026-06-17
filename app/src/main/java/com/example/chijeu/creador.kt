@@ -31,7 +31,7 @@ class creador : AppCompatActivity() {
         val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
         val rol = prefs.getString("rol", "")
 
-        if (rol == "Vendedor") {
+        if (rol == "Trabajador") {
             menu?.findItem(R.id.opc1)?.isVisible = false
             menu?.findItem(R.id.opc3)?.isVisible = false
             menu?.findItem(R.id.iconEliminar)?.isVisible = false
@@ -44,20 +44,20 @@ class creador : AppCompatActivity() {
         val rol = prefs.getString("rol", "")
 
         if (item.itemId == R.id.opc1) {
-            if (rol == "Vendedor") {
+            if (rol == "Trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
         if (item.itemId == R.id.opc2) {
-            if (Guitarra.listaGuitarras.isEmpty()) Toast.makeText(this, "No hay guitarras registradas", Toast.LENGTH_SHORT).show()
+            if (guitarra.listaGuitarras.isEmpty()) Toast.makeText(this, "No hay guitarras registradas", Toast.LENGTH_SHORT).show()
             else startActivity(Intent(this, ver::class.java))
         }
         if (item.itemId == R.id.opc3) {
-            if (rol == "Vendedor") {
+            if (rol == "Trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaGuitarras.isEmpty()) {
+            } else if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, actualizar::class.java))
@@ -66,9 +66,9 @@ class creador : AppCompatActivity() {
         if (item.itemId == R.id.opc4) Toast.makeText(this, "Ya estás aquí", Toast.LENGTH_SHORT).show()
         if (item.itemId == R.id.opc5) startActivity(Intent(this, contacto::class.java))
         if (item.itemId == R.id.iconEliminar) {
-            if (rol == "Vendedor") {
+            if (rol == "Trabajador") {
                 Toast.makeText(this, "No tienes permisos para esta acción", Toast.LENGTH_SHORT).show()
-            } else if (Guitarra.listaGuitarras.isEmpty()) {
+            } else if (guitarra.listaGuitarras.isEmpty()) {
                 Toast.makeText(this, "No hay ninguna guitarra registrada", Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this, eliminar::class.java))

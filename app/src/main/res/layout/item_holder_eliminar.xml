@@ -40,9 +40,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvNombreE"
+                android:id="@+id/tvModeloE"
                 android:textColor="@color/white"
-                android:text="Nombre"
+                android:text="Modelo"
                 android:fontFamily="@font/creato"
                 android:textSize="20sp">
             </TextView>
@@ -60,9 +60,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvPresentacionE"
+                android:id="@+id/tvPuenteE"
                 android:textColor="@color/white"
-                android:text="Presentacion"
+                android:text="Puente"
                 android:fontFamily="@font/creato"
                 android:textSize="20sp">
             </TextView>
@@ -70,9 +70,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvEmpresaE"
+                android:id="@+id/tvFabricanteE"
                 android:textColor="@color/white"
-                android:text="Empresa"
+                android:text="Fabricante"
                 android:fontFamily="@font/creato"
                 android:textSize="20sp">
             </TextView>

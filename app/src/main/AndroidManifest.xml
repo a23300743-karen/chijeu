@@ -39,7 +39,7 @@
             android:name=".actualizar"
             android:exported="false" />
         <activity
-            android:name=".DetalleGuitarra"
+            android:name=".tarjeta"
             android:exported="false" />
         <activity
             android:name=".ver"

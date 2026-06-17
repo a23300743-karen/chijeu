@@ -16,16 +16,16 @@ import android.content.pm.PackageManager
 
 class tarjeta : AppCompatActivity() {
     private val REQUEST_CALL = 1
-    lateinit var nomb: TextView
+    lateinit var mod: TextView
     lateinit var marc: TextView
     lateinit var pai: TextView
-    lateinit var emp: TextView
+    lateinit var fab: TextView
     lateinit var prec: TextView
-    lateinit var tleche: TextView
-    lateinit var sab: TextView
-    lateinit var proce: TextView
-    lateinit var pres: TextView
-    lateinit var pes: TextView
+    lateinit var tcuerpo: TextView
+    lateinit var tpastillas: TextView
+    lateinit var puent: TextView
+    lateinit var mad: TextView
+    lateinit var cuer: TextView
     lateinit var tel: TextView
     lateinit var llamar: Button
     lateinit var regresar: Button
@@ -36,16 +36,16 @@ class tarjeta : AppCompatActivity() {
         setContentView(R.layout.activity_tarjeta)
 
         regresar = findViewById<Button>(R.id.btnRegresar)
-        nomb = findViewById<TextView>(R.id.txtNom)
+        mod = findViewById<TextView>(R.id.txtNom)
         marc = findViewById<TextView>(R.id.txtMarc)
         pai = findViewById<TextView>(R.id.txtPais)
-        emp = findViewById<TextView>(R.id.txtEmpresa)
+        fab = findViewById<TextView>(R.id.txtEmpresa)
         prec = findViewById<TextView>(R.id.txtPrecio)
-        tleche = findViewById<TextView>(R.id.txtTipoLeche)
-        sab = findViewById<TextView>(R.id.txtSabor)
-        proce = findViewById<TextView>(R.id.txtProceso)
-        pres = findViewById<TextView>(R.id.txtPresentacion)
-        pes = findViewById<TextView>(R.id.txtPeso)
+        tcuerpo = findViewById<TextView>(R.id.txtTipoLeche)
+        tpastillas = findViewById<TextView>(R.id.txtSabor)
+        puent = findViewById<TextView>(R.id.txtProceso)
+        mad = findViewById<TextView>(R.id.txtPresentacion)
+        cuer = findViewById<TextView>(R.id.txtPeso)
         tel = findViewById<TextView>(R.id.txtTelefono)
         llamar = findViewById<Button>(R.id.btnLlamar)
 
@@ -53,20 +53,20 @@ class tarjeta : AppCompatActivity() {
         llamar.setOnClickListener { llamar() }
 
         val posicion = intent.getIntExtra("pos", -1)
-        if (posicion != -1 && posicion < Guitarra.listaGuitarras.size) {
-            val item = Guitarra.listaGuitarras[posicion]
+        if (posicion != -1 && posicion < guitarra.listaGuitarras.size) {
+            val item = guitarra.listaGuitarras[posicion]
 
-            nomb.text = item.nombre
+            mod.text = item.modelo
             marc.text = item.marca
-            emp.text = item.empresa
+            fab.text = item.fabricante
             prec.text = item.precio.toString()
             pai.text = item.pais
             tel.text = item.telefono
-            tleche.text = item.tipoleche // Representa Cuerpo
-            proce.text = item.proceso     // Representa Pastillas
-            pres.text = item.presentacion // Representa Puente
-            sab.text = item.sabores       // Representa Maderas
-            pes.text = item.peso          // Representa Cuerdas
+            tcuerpo.text = item.tipocuerpo // Representa Cuerpo
+            tpastillas.text = item.tipopastillas     // Representa Pastillas
+            puent.text = item.puente // Representa Puente
+            mad.text = item.madera       // Representa Maderas
+            cuer.text = item.cuerdas          // Representa Cuerdas
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

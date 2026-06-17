@@ -1,19 +1,13 @@
-// Archivo: datos.kt
 data class datos(
-    var nombre: String,       // Modelo de guitarra
-    var marca: String,        // Marca
-    var empresa: String,      // Fabricante
-    var precio: Double,       // Precio
-    var pais: String,         // País de origen
-    var telefono: String,     // Teléfono de tienda
-    var tipoleche: String,    // Spinner 1 (Cuerpo)
-    var proceso: String,      // Spinner 2 (Pastillas)
-    var presentacion: String, // Spinner 3 (Puente)
-    var sabores: String,      // Spinner 4 (Maderas)
-    var peso: String          // Spinner 5 (Cuerdas)
+    val modelo : String,
+    val marca : String,
+    val fabricante : String,
+    val precio : Double,
+    val pais : String,
+    val telefono : String,
+    val tipocuerpo : String,
+    val tipopastillas : String,
+    val puente : String,
+    val madera : String,
+    val cuerdas : String,
 )
-
-object Guitarra {
-    val listaGuitarras = mutableListOf<datos>()
-}
-
